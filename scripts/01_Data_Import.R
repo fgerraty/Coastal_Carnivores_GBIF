@@ -20,7 +20,7 @@ gshhg <- st_read(shapefile_path)
 shoreline <- st_make_valid(gshhg)
 
 
-sf_use_s2(TRUE)  # Disable s2 processing
+#sf_use_s2(TRUE)  # Disable s2 processing
 
 # Convert to a projected CRS (Web Mercator, EPSG:3857)
 shoreline_proj <- st_transform(shoreline, crs = 3857)
@@ -62,13 +62,11 @@ carnivora_sf <- st_as_sf(carnivora_df, coords = c("decimalLongitude", "decimalLa
 carnivora_proj <- st_transform(carnivora_sf, crs = 3857)
 
 # Perform the spatial join using a projected CRS
-carnivora_near_shore <- st_join(carnivora_proj, shoreline_buffer_proj, join = st_intersects) %>% 
+carnivora_near_shore <- st_join(carnivora_proj, shoreline_buffer_proj, join = st_intersects) #%>% 
   filter(!is.na(level)) 
 
 # Convert back to WGS 84 if needed
 carnivora_near_shore <- st_transform(carnivora_near_shore, crs = 4326)
-
-
 
 
 
