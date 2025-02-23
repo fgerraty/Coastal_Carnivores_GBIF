@@ -8,6 +8,7 @@
 # Part 1: Load Packages --------------------------------------------------
 
 # Load packages
-packages <- c("tidyverse", "sf")
+packages <- c("tidyverse", "sf", "lwgeom", "rgbif")
 
 pacman::p_load(packages, character.only = TRUE); rm(packages)
+
